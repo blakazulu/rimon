@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רימון AI - בדיקת בשלות רימונים</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0a0a0f">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background Elements -->
+        <div class="background-gradient"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🔬</div>
+                    <h1>רימון AI</h1>
+                </div>
+                <div class="school-name">בית ספר בגין</div>
+                <p class="tagline">בינה מלאכותית לבדיקת בשלות רימונים</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="glass-card upload-card">
+                    <div class="card-header">
+                        <h2>בחר את הרימון שלך</h2>
+                        <p>צלם או העלה תמונה של הרימון לניתוח מיידי</p>
+                    </div>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📸</div>
+                            <h3>צלם או העלה תמונה</h3>
+                            <p>גרור תמונה לכאן או לחץ לבחירה</p>
+                            <div class="upload-buttons">
+                                <button class="btn-primary" id="cameraBtn">
+                                    <span class="btn-icon">📷</span>
+                                    צלם עכשיו
+                                </button>
+                                <button class="btn-secondary" id="uploadBtn">
+                                    <span class="btn-icon">📁</span>
+                                    בחר קובץ
+                                </button>
+                            </div>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analysis Section -->
+            <section class="analysis-section" id="analysisSection" style="display: none;">
+                <div class="glass-card analysis-card">
+                    <div class="analysis-header">
+                        <h2>ניתוח הרימון</h2>
+                        <button class="btn-back" id="backBtn">
+                            <span class="btn-icon">←</span>
+                            חזור
+                        </button>
+                    </div>
+                    
+                    <div class="image-analysis-container">
+                        <div class="image-preview">
+                            <div class="frame-corners">
+                                <div class="corner top-left"></div>
+                                <div class="corner top-right"></div>
+                                <div class="corner bottom-left"></div>
+                                <div class="corner bottom-right"></div>
+                            </div>
+                            <img id="previewImage" alt="תמונת הרימון">
+                            <div class="analysis-overlay" id="analysisOverlay">
+                                <div class="scanning-grid">
+                                    <div class="scan-line horizontal"></div>
+                                    <div class="scan-line vertical"></div>
+                                </div>
+                                <div class="analysis-points">
+                                    <div class="analysis-point" style="top: 25%; left: 30%;"></div>
+                                    <div class="analysis-point" style="top: 45%; left: 60%;"></div>
+                                    <div class="analysis-point" style="top: 70%; left: 40%;"></div>
+                                </div>
+                                <div class="ai-processing">
+                                    <div class="ai-icon">🤖</div>
+                                    <div class="processing-text">מעבד נתונים...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-sidebar">
+                            <div class="progress-section" id="progressSection">
+                                <div class="analysis-title">
+                                    <span class="title-icon">⚡</span>
+                                    <h3 id="analysisTitle">מנתח את הרימון...</h3>
+                                </div>
+                                
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="progressFill"></div>
+                                        <div class="progress-glow"></div>
+                                    </div>
+                                    <span class="progress-text" id="progressText">0%</span>
+                                </div>
+                                
+                                <div class="analysis-steps">
+                                    <div class="step" id="step1">
+                                        <div class="step-indicator">
+                                            <span class="step-number">1</span>
+                                            <div class="step-line"></div>
+                                        </div>
+                                        <div class="step-content">
+                                            <span class="step-title">זיהוי רימון</span>
+                                            <span class="step-description">איתור הפרי בתמונה</span>
+                                        </div>
+                                        <div class="step-status">⏳</div>
+                                    </div>
+                                    <div class="step" id="step2">
+                                        <div class="step-indicator">
+                                            <span class="step-number">2</span>
+                                            <div class="step-line"></div>
+                                        </div>
+                                        <div class="step-content">
+                                            <span class="step-title">ניתוח צבע</span>
+                                            <span class="step-description">בדיקת גוון וצבע הקליפה</span>
+                                        </div>
+                                        <div class="step-status">⏳</div>
+                                    </div>
+                                    <div class="step" id="step3">
+                                        <div class="step-indicator">
+                                            <span class="step-number">3</span>
+                                            <div class="step-line"></div>
+                                        </div>
+                                        <div class="step-content">
+                                            <span class="step-title">קביעת בשלות</span>
+                                            <span class="step-description">חישוב סופי של רמת הבשלות</span>
+                                        </div>
+                                        <div class="step-status">⏳</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-content">
+                        <div class="results-section" id="resultsSection" style="display: none;">
+                            <div class="results-hero">
+                                <!-- Hero Result Display -->
+                                <div class="hero-content">
+                                    <div class="hero-icon-wrapper">
+                                        <div class="hero-icon" id="resultIcon">✅</div>
+                                        <div class="hero-pulse"></div>
+                                    </div>
+                                    <h2 class="hero-title" id="resultTitle">הרימון בשל!</h2>
+                                    <p class="hero-subtitle" id="resultSubtitle">ניתוח הושלם בהצלחה</p>
+                                </div>
+
+                                <!-- Main Ripeness Display -->
+                                <div class="ripeness-hero">
+                                    <div class="ripeness-visual">
+                                        <div class="ripeness-gauge">
+                                            <svg class="gauge-svg" viewBox="0 0 200 120">
+                                                <defs>
+                                                    <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                        <stop offset="0%" style="stop-color:#ff4757;stop-opacity:1" />
+                                                        <stop offset="30%" style="stop-color:#ffa502;stop-opacity:1" />
+                                                        <stop offset="60%" style="stop-color:#2ed573;stop-opacity:1" />
+                                                        <stop offset="100%" style="stop-color:#00d2d3;stop-opacity:1" />
+                                                    </linearGradient>
+                                                    <filter id="glow">
+                                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                                        <feMerge> 
+                                                            <feMergeNode in="coloredBlur"/>
+                                                            <feMergeNode in="SourceGraphic"/>
+                                                        </feMerge>
+                                                    </filter>
+                                                </defs>
+                                                <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="12"/>
+                                                <path class="gauge-fill" id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGradient)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                                                <circle class="gauge-indicator" id="gaugeIndicator" cx="20" cy="100" r="8" fill="#fff" filter="url(#glow)"/>
+                                            </svg>
+                                            <div class="gauge-text">
+                                                <span class="gauge-percentage" id="ripenessPercentage">85%</span>
+                                                <span class="gauge-label">רמת בשלות</span>
+                                            </div>
+                                        </div>
+                                        <div class="ripeness-status" id="ripenessStatus">
+                                            <span class="status-text">מוכן לאכילה</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detailed Analysis Cards -->
+                            <div class="analysis-dashboard">
+                                <div class="dashboard-header">
+                                    <h3>דוח ניתוח מפורט</h3>
+                                    <div class="analysis-badge">
+                                        <span class="badge-icon">🧠</span>
+                                        <span>AI Analysis</span>
+                                    </div>
+                                </div>
+
+                                <div class="metrics-grid">
+                                    <!-- Color Analysis -->
+                                    <div class="metric-card color-card">
+                                        <div class="metric-header">
+                                            <div class="metric-icon">🎨</div>
+                                            <div class="metric-info">
+                                                <h4>ניתוח צבע</h4>
+                                                <span class="metric-description">עוצמת הצבע האדום</span>
+                                            </div>
+                                            <div class="metric-score" id="colorScore">90</div>
+                                        </div>
+                                        <div class="metric-bar-container">
+                                            <div class="metric-bar">
+                                                <div class="metric-fill color-fill" id="colorMetric"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shape Analysis -->
+                                    <div class="metric-card shape-card">
+                                        <div class="metric-header">
+                                            <div class="metric-icon">⚪</div>
+                                            <div class="metric-info">
+                                                <h4>ניתוח צורה</h4>
+                                                <span class="metric-description">עגלגלות וסימטריה</span>
+                                            </div>
+                                            <div class="metric-score" id="shapeScore">85</div>
+                                        </div>
+                                        <div class="metric-bar-container">
+                                            <div class="metric-bar">
+                                                <div class="metric-fill shape-fill" id="shapeMetric"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Texture Analysis -->
+                                    <div class="metric-card texture-card">
+                                        <div class="metric-header">
+                                            <div class="metric-icon">✨</div>
+                                            <div class="metric-info">
+                                                <h4>ניתוח מרקם</h4>
+                                                <span class="metric-description">חלקות הקליפה</span>
+                                            </div>
+                                            <div class="metric-score" id="textureScore">88</div>
+                                        </div>
+                                        <div class="metric-bar-container">
+                                            <div class="metric-bar">
+                                                <div class="metric-fill texture-fill" id="textureMetric"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quality Summary -->
+                                    <div class="metric-card quality-summary">
+                                        <div class="quality-content">
+                                            <div class="quality-icon">🏆</div>
+                                            <div class="quality-details">
+                                                <h4>דירוג איכות</h4>
+                                                <div class="quality-badge-large" id="qualityBadge">מעולה</div>
+                                                <div class="quality-stars" id="qualityStars">
+                                                    <span class="star">★</span>
+                                                    <span class="star">★</span>
+                                                    <span class="star">★</span>
+                                                    <span class="star">★</span>
+                                                    <span class="star">★</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Recommendation Panel -->
+                                <div class="ai-recommendation">
+                                    <div class="recommendation-header">
+                                        <div class="ai-avatar">
+                                            <div class="ai-brain">🤖</div>
+                                            <div class="ai-thinking"></div>
+                                        </div>
+                                        <div class="recommendation-title">
+                                            <h4>המלצת הבינה המלאכותית</h4>
+                                            <span class="confidence-level">ביטחון גבוה</span>
+                                        </div>
+                                    </div>
+                                    <div class="recommendation-content">
+                                        <p class="recommendation-text" id="recommendation">הרימון מוכן לאכילה! הצבע האדום העמוק והמרקם מצביעים על בשלות מושלמת.</p>
+                                        
+                                        <div class="action-suggestions">
+                                            <h5>המלצות לפעולה:</h5>
+                                            <div class="suggestions-grid" id="recommendationTips">
+                                                <div class="suggestion-item">
+                                                    <span class="suggestion-icon">🍽️</span>
+                                                    <span>מומלץ לאכילה מיידית</span>
+                                                </div>
+                                                <div class="suggestion-item">
+                                                    <span class="suggestion-icon">🌡️</span>
+                                                    <span>שמור במקרר לעד 5 ימים</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Panel -->
+                                <div class="action-panel">
+                                    <button class="btn-analyze-another" id="analyzeAnotherBtn">
+                                        <span class="btn-icon">🔄</span>
+                                        <span class="btn-text">נתח רימון נוסף</span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>מופעל על ידי בינה מלאכותית מתקדמת</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
