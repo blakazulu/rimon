@@ -159,53 +159,122 @@
                     
                     <div class="analysis-content">
                         <div class="results-section" id="resultsSection" style="display: none;">
-                            <div class="results-container">
-                                <div class="result-header">
-                                    <div class="result-icon-container">
-                                        <div class="result-icon" id="resultIcon">✅</div>
-                                        <div class="result-glow"></div>
+                            <div class="results-hero">
+                                <!-- Hero Result Display -->
+                                <div class="hero-content">
+                                    <div class="hero-icon-wrapper">
+                                        <div class="hero-icon" id="resultIcon">✅</div>
+                                        <div class="hero-pulse"></div>
                                     </div>
-                                    <h3 id="resultTitle">הרימון בשל!</h3>
-                                    <div class="result-subtitle" id="resultSubtitle">ניתוח הושלם בהצלחה</div>
+                                    <h2 class="hero-title" id="resultTitle">הרימון בשל!</h2>
+                                    <p class="hero-subtitle" id="resultSubtitle">ניתוח הושלם בהצלחה</p>
                                 </div>
-                                
-                                <div class="results-grid">
-                                    <!-- Ripeness Card -->
-                                    <div class="result-card ripeness-card">
-                                        <div class="card-header">
-                                            <div class="card-icon">🎯</div>
-                                            <h4>רמת בשלות</h4>
+
+                                <!-- Main Ripeness Display -->
+                                <div class="ripeness-hero">
+                                    <div class="ripeness-visual">
+                                        <div class="ripeness-gauge">
+                                            <svg class="gauge-svg" viewBox="0 0 200 120">
+                                                <defs>
+                                                    <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                        <stop offset="0%" style="stop-color:#ff4757;stop-opacity:1" />
+                                                        <stop offset="30%" style="stop-color:#ffa502;stop-opacity:1" />
+                                                        <stop offset="60%" style="stop-color:#2ed573;stop-opacity:1" />
+                                                        <stop offset="100%" style="stop-color:#00d2d3;stop-opacity:1" />
+                                                    </linearGradient>
+                                                    <filter id="glow">
+                                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                                        <feMerge> 
+                                                            <feMergeNode in="coloredBlur"/>
+                                                            <feMergeNode in="SourceGraphic"/>
+                                                        </feMerge>
+                                                    </filter>
+                                                </defs>
+                                                <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="12"/>
+                                                <path class="gauge-fill" id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGradient)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+                                                <circle class="gauge-indicator" id="gaugeIndicator" cx="20" cy="100" r="8" fill="#fff" filter="url(#glow)"/>
+                                            </svg>
+                                            <div class="gauge-text">
+                                                <span class="gauge-percentage" id="ripenessPercentage">85%</span>
+                                                <span class="gauge-label">רמת בשלות</span>
+                                            </div>
                                         </div>
-                                        <div class="card-content">
-                                            <div class="ripeness-circle">
-                                                <svg class="progress-ring" width="120" height="120">
-                                                    <defs>
-                                                        <linearGradient id="ripenessGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                            <stop offset="0%" style="stop-color:#8338ec;stop-opacity:1" />
-                                                            <stop offset="50%" style="stop-color:#ff006e;stop-opacity:1" />
-                                                            <stop offset="100%" style="stop-color:#00f5ff;stop-opacity:1" />
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <circle class="progress-ring-bg" cx="60" cy="60" r="50" />
-                                                    <circle class="progress-ring-fill" id="progressRing" cx="60" cy="60" r="50" />
-                                                </svg>
-                                                <div class="ripeness-text">
-                                                    <span class="percentage" id="ripenessPercentage">85%</span>
-                                                    <span class="label">בשלות</span>
-                                                </div>
+                                        <div class="ripeness-status" id="ripenessStatus">
+                                            <span class="status-text">מוכן לאכילה</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detailed Analysis Cards -->
+                            <div class="analysis-dashboard">
+                                <div class="dashboard-header">
+                                    <h3>דוח ניתוח מפורט</h3>
+                                    <div class="analysis-badge">
+                                        <span class="badge-icon">🧠</span>
+                                        <span>AI Analysis</span>
+                                    </div>
+                                </div>
+
+                                <div class="metrics-grid">
+                                    <!-- Color Analysis -->
+                                    <div class="metric-card color-card">
+                                        <div class="metric-header">
+                                            <div class="metric-icon">🎨</div>
+                                            <div class="metric-info">
+                                                <h4>ניתוח צבע</h4>
+                                                <span class="metric-description">עוצמת הצבע האדום</span>
+                                            </div>
+                                            <div class="metric-score" id="colorScore">90</div>
+                                        </div>
+                                        <div class="metric-bar-container">
+                                            <div class="metric-bar">
+                                                <div class="metric-fill color-fill" id="colorMetric"></div>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Quality Card -->
-                                    <div class="result-card quality-card">
-                                        <div class="card-header">
-                                            <div class="card-icon">⭐</div>
-                                            <h4>איכות הפרי</h4>
+
+                                    <!-- Shape Analysis -->
+                                    <div class="metric-card shape-card">
+                                        <div class="metric-header">
+                                            <div class="metric-icon">⚪</div>
+                                            <div class="metric-info">
+                                                <h4>ניתוח צורה</h4>
+                                                <span class="metric-description">עגלגלות וסימטריה</span>
+                                            </div>
+                                            <div class="metric-score" id="shapeScore">85</div>
                                         </div>
-                                        <div class="card-content">
-                                            <div class="quality-display">
-                                                <div class="quality-badge" id="qualityBadge">מעולה</div>
+                                        <div class="metric-bar-container">
+                                            <div class="metric-bar">
+                                                <div class="metric-fill shape-fill" id="shapeMetric"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Texture Analysis -->
+                                    <div class="metric-card texture-card">
+                                        <div class="metric-header">
+                                            <div class="metric-icon">✨</div>
+                                            <div class="metric-info">
+                                                <h4>ניתוח מרקם</h4>
+                                                <span class="metric-description">חלקות הקליפה</span>
+                                            </div>
+                                            <div class="metric-score" id="textureScore">88</div>
+                                        </div>
+                                        <div class="metric-bar-container">
+                                            <div class="metric-bar">
+                                                <div class="metric-fill texture-fill" id="textureMetric"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quality Summary -->
+                                    <div class="metric-card quality-summary">
+                                        <div class="quality-content">
+                                            <div class="quality-icon">🏆</div>
+                                            <div class="quality-details">
+                                                <h4>דירוג איכות</h4>
+                                                <div class="quality-badge-large" id="qualityBadge">מעולה</div>
                                                 <div class="quality-stars" id="qualityStars">
                                                     <span class="star">★</span>
                                                     <span class="star">★</span>
@@ -216,68 +285,45 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Analysis Details Card -->
-                                    <div class="result-card analysis-card">
-                                        <div class="card-header">
-                                            <div class="card-icon">📊</div>
-                                            <h4>פרטי הניתוח</h4>
+                                </div>
+
+                                <!-- AI Recommendation Panel -->
+                                <div class="ai-recommendation">
+                                    <div class="recommendation-header">
+                                        <div class="ai-avatar">
+                                            <div class="ai-brain">🤖</div>
+                                            <div class="ai-thinking"></div>
                                         </div>
-                                        <div class="card-content">
-                                            <div class="analysis-metrics">
-                                                <div class="metric">
-                                                    <span class="metric-label">צבע</span>
-                                                    <div class="metric-bar">
-                                                        <div class="metric-fill" id="colorMetric" style="width: 90%"></div>
-                                                    </div>
-                                                    <span class="metric-value">90%</span>
-                                                </div>
-                                                <div class="metric">
-                                                    <span class="metric-label">צורה</span>
-                                                    <div class="metric-bar">
-                                                        <div class="metric-fill" id="shapeMetric" style="width: 85%"></div>
-                                                    </div>
-                                                    <span class="metric-value">85%</span>
-                                                </div>
-                                                <div class="metric">
-                                                    <span class="metric-label">מרקם</span>
-                                                    <div class="metric-bar">
-                                                        <div class="metric-fill" id="textureMetric" style="width: 88%"></div>
-                                                    </div>
-                                                    <span class="metric-value">88%</span>
-                                                </div>
-                                            </div>
+                                        <div class="recommendation-title">
+                                            <h4>המלצת הבינה המלאכותית</h4>
+                                            <span class="confidence-level">ביטחון גבוה</span>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <!-- Recommendation Section -->
-                                <div class="recommendation-section">
-                                    <div class="recommendation-card">
-                                        <div class="recommendation-header">
-                                            <div class="recommendation-icon">💡</div>
-                                            <h4>המלצת המערכת</h4>
-                                        </div>
-                                        <div class="recommendation-content">
-                                            <p id="recommendation">הרימון מוכן לאכילה! הצבע האדום העמוק והמרקם מצביעים על בשלות מושלמת.</p>
-                                            <div class="recommendation-tips" id="recommendationTips">
-                                                <div class="tip">
-                                                    <span class="tip-icon">🍽️</span>
+                                    <div class="recommendation-content">
+                                        <p class="recommendation-text" id="recommendation">הרימון מוכן לאכילה! הצבע האדום העמוק והמרקם מצביעים על בשלות מושלמת.</p>
+                                        
+                                        <div class="action-suggestions">
+                                            <h5>המלצות לפעולה:</h5>
+                                            <div class="suggestions-grid" id="recommendationTips">
+                                                <div class="suggestion-item">
+                                                    <span class="suggestion-icon">🍽️</span>
                                                     <span>מומלץ לאכילה מיידית</span>
                                                 </div>
-                                                <div class="tip">
-                                                    <span class="tip-icon">🌡️</span>
+                                                <div class="suggestion-item">
+                                                    <span class="suggestion-icon">🌡️</span>
                                                     <span>שמור במקרר לעד 5 ימים</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="action-buttons">
-                                    <button class="btn-primary" id="analyzeAnotherBtn">
+
+                                <!-- Action Panel -->
+                                <div class="action-panel">
+                                    <button class="btn-analyze-another" id="analyzeAnotherBtn">
                                         <span class="btn-icon">🔄</span>
-                                        נתח רימון נוסף
+                                        <span class="btn-text">נתח רימון נוסף</span>
+                                        <div class="btn-shine"></div>
                                     </button>
                                 </div>
                             </div>
